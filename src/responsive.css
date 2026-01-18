@@ -1,0 +1,59 @@
+@media (min-width: 768px) {
+  .nav-right {
+    display: none !important;
+  }
+  .card-img img {
+    max-height: 220px;
+  }
+}
+@media (max-width: 768px) {
+  .nav-top {
+    display: none !important;
+  }
+  .btn-filter,
+  .btn-remove,
+  .btn-filter-active {
+    font-size: 15px;
+  }
+  .card-img img {
+    max-height: 180px;
+    object-fit: contain;
+  }
+  .table th,
+  .table td {
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 568px) {
+  .nav-top {
+    display: none !important;
+  }
+  .overlay {
+    padding: 1rem 1.5rem;
+  }
+  .overlay .content h1 {
+    font-size: 1.5rem;
+  }
+  .overlay .content p {
+    font-size: 1rem;
+  }
+  .btn-filter,
+  .btn-remove,
+  .btn-filter-active {
+    font-size: 13px;
+  }
+  .total-price {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.8rem;
+    gap: 0.3rem;
+  }
+  .footer {
+    text-align: center;
+  }
+  .footer .d-flex {
+    justify-content: center;
+  }
+  .footer .row > div {
+    margin-bottom: 1.5rem;
+  }
+}
