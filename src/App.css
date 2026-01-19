@@ -146,9 +146,9 @@ nav .nav-item a {
 
 /* Start About */
 .about {
-  height: 100vh;
   display: flex;
   align-items: center;
+  padding: 70px 0 !important;
 }
 /* End About */
 
@@ -282,33 +282,33 @@ nav .nav-item a {
 /* End Table */
 
 /* Start Footer */
-.footer {
-  font-family: sans-serif;
+footer {
+  padding: 50px 0 25px !important;
 }
-.footer h5 {
+footer h5 {
   color: #fff;
   font-size: 1.1rem;
 }
-.footer p {
+footer p {
   font-size: 0.9rem;
   opacity: 0.8;
 }
-.footer-link {
+footer-link {
   display: block;
   color: #bbb;
   text-decoration: none;
   margin-bottom: 0.5rem;
   transition: color 0.3s;
 }
-.footer-link:hover {
+footer-link:hover {
   color: #fff;
 }
-.footer-social {
+footer-social {
   color: #bbb;
   font-size: 1.2rem;
   transition: color 0.3s;
 }
-.footer-social:hover {
+footer-social:hover {
   color: #fff;
 }
 /* End Footer */

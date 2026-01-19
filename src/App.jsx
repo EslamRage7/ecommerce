@@ -16,16 +16,6 @@ function App() {
   const location = useLocation();
 
   const [loading, setLoading] = useState(true);
-  const [routeLoading, setRouteLoading] = useState(false);
-  useEffect(() => {
-    setRouteLoading(true);
-
-    const timer = setTimeout(() => {
-      setRouteLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,21 +31,15 @@ function App() {
     <div className="App min-vh-100 d-flex flex-column">
       <NavbarApp />
 
-      <div className="flex-grow-1 position-relative">
-        {routeLoading && <Loader />}
-
-        {!routeLoading && (
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/favorite" element={<Favorite />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/:productID" element={<ProductDetails />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        )}
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/:productID" element={<ProductDetails />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
 
       <Footer />
     </div>

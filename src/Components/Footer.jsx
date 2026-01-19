@@ -7,7 +7,7 @@ import {
 
 function Footer() {
   return (
-    <footer className="bg-dark text-lg-start text-md-start  text-center text-white  pt-5 pb-4">
+    <footer className="bg-dark text-lg-start text-md-start text-center text-white">
       <div className="container">
         <div className="row">
           {/* Links */}

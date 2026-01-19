@@ -95,19 +95,21 @@ function Products() {
           data-aos="fade-right"
         />
 
-        <div className="d-flex flex-wrap gap-2 my-5" data-aos="fade-up">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`btn fw-semibold text-capitalize rounded-pill ${
-                cat === category ? "btn-filter" : "btn-filter-active"
-              }`}
-              onClick={() => setCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {products.length !== 0 && (
+          <div className="d-flex flex-wrap gap-2 my-5" data-aos="fade-up">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`btn fw-semibold text-capitalize rounded-pill ${
+                  cat === category ? "btn-filter" : "btn-filter-active"
+                }`}
+                onClick={() => setCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="row">
           {filteredProducts.map((product, index) => {
@@ -146,7 +148,7 @@ function Products() {
                       disabled={!cartItem}
                       onClick={() =>
                         dispatch(
-                          updateQuantity({ id: product.id, type: "decrease" })
+                          updateQuantity({ id: product.id, type: "decrease" }),
                         )
                       }
                     >
@@ -158,7 +160,7 @@ function Products() {
                       disabled={!cartItem}
                       onClick={() =>
                         dispatch(
-                          updateQuantity({ id: product.id, type: "increase" })
+                          updateQuantity({ id: product.id, type: "increase" }),
                         )
                       }
                     >

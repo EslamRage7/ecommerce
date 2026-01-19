@@ -9,7 +9,7 @@ function About() {
   }, []);
 
   return (
-    <section className="py-5 bg-light" data-aos="fade-up">
+    <section className="about bg-light" data-aos="fade-up">
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="fw-bold">About Our Store</h2>
