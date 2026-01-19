@@ -153,6 +153,9 @@ nav .nav-item a {
 /* End About */
 
 /* Start Products */
+.products {
+  overflow-x: hidden;
+}
 .products h1 {
   position: relative;
   width: fit-content;
@@ -164,9 +167,9 @@ nav .nav-item a {
   bottom: -10px;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 120%;
   height: 2px;
-  background-color: #0000005e;
+  background-color: #11368d18;
 }
 .products .card {
   border: 0;
@@ -238,7 +241,8 @@ nav .nav-item a {
 }
 
 /* Remove */
-.btn-remove {
+.btn-remove,
+.bg-remove {
   background: linear-gradient(90deg, #ff6a6a, #ff8c6a);
 }
 .btn-remove:hover {

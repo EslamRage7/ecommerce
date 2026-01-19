@@ -1,5 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import logo from "../assets/logo.png";
 
 import { IoCartOutline } from "react-icons/io5";
@@ -8,6 +8,17 @@ import { FaRegHeart } from "react-icons/fa6";
 function NavbarApp() {
   const cart = useSelector((state) => state.cart);
   const heart = useSelector((state) => state.heart);
+
+  const closeOffcanvas = () => {
+    const offcanvasEl = document.getElementById("offcanvasNavbar");
+    if (!offcanvasEl) return;
+
+    const bsOffcanvas =
+      window.bootstrap?.Offcanvas.getInstance(offcanvasEl) ||
+      new window.bootstrap.Offcanvas(offcanvasEl);
+
+    bsOffcanvas.hide();
+  };
 
   return (
     <>
@@ -116,7 +127,7 @@ function NavbarApp() {
       <nav className="navbar nav-right bg-white p-0 sticky-top">
         <div className="container-fluid">
           {/* Logo */}
-          <NavLink className="navbar-brand" to="/">
+          <NavLink onClick={closeOffcanvas} className="navbar-brand" to="/">
             <img
               src={logo}
               className="img-fluid logo"
@@ -132,7 +143,7 @@ function NavbarApp() {
             aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon btn-sm btn"></span>
+            <span className="navbar-toggler-icon btn-sm btn border-0"></span>
           </button>
           <div
             className="offcanvas offcanvas-end w-75"
@@ -144,6 +155,7 @@ function NavbarApp() {
               <ul className="navbar-nav d-flex flex-row gap-3">
                 <li className="nav-item position-relative bg-light p-1 rounded-circle btn border-0">
                   <NavLink
+                    onClick={closeOffcanvas}
                     className="btn position-relative p-2 border-0"
                     to="/cart"
                   >
@@ -167,7 +179,11 @@ function NavbarApp() {
                   className={`nav-item  rounded-circle btn border-0 
                   ${heart.length > 0 ? "btn-remove" : "bg-light"}`}
                 >
-                  <NavLink to="/favorite" className="btn p-1 border-0">
+                  <NavLink
+                    to="/favorite"
+                    onClick={closeOffcanvas}
+                    className="btn p-1 border-0"
+                  >
                     <FaRegHeart
                       style={{
                         width: "20px",
@@ -184,7 +200,7 @@ function NavbarApp() {
               <button
                 type="button"
                 className="btn-close"
-                data-bs-dismiss="offcanvas"
+                onClick={closeOffcanvas}
                 aria-label="Close"
               ></button>
             </div>
@@ -194,6 +210,7 @@ function NavbarApp() {
                   <NavLink
                     to="/"
                     end
+                    onClick={closeOffcanvas}
                     className={({ isActive }) =>
                       `nav-link nav-link-custom ${isActive ? "active" : ""}`
                     }
@@ -203,6 +220,7 @@ function NavbarApp() {
                 </li>
                 <li className="nav-item">
                   <NavLink
+                    onClick={closeOffcanvas}
                     className={({ isActive }) =>
                       `nav-link nav-link-custom ${isActive ? "active" : ""}`
                     }
@@ -213,6 +231,7 @@ function NavbarApp() {
                 </li>
                 <li className="nav-item">
                   <NavLink
+                    onClick={closeOffcanvas}
                     to="/products"
                     className={({ isActive }) =>
                       `nav-link nav-link-custom ${isActive ? "active" : ""}`
@@ -223,6 +242,7 @@ function NavbarApp() {
                 </li>
                 <li className="nav-item">
                   <NavLink
+                    onClick={closeOffcanvas}
                     to="/contact"
                     className={({ isActive }) =>
                       `nav-link nav-link-custom ${isActive ? "active" : ""}`

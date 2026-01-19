@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -36,15 +36,17 @@ function Products() {
 
   const categories = ["all", ...new Set(products.map((p) => p.category))];
 
-  const filteredProducts = products.filter((product) => {
-    const matchSearch = product.title
-      .toLowerCase()
-      .includes(search.toLowerCase());
-    const matchCategory = product.category === category || category === "all";
-    return matchCategory && matchSearch;
-  });
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchSearch = product.title
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const matchCategory = product.category === category || category === "all";
+      return matchCategory && matchSearch;
+    });
+  }, [products, search, category]);
 
-  const skeletonArray = Array.from({ length: 8 });
+  const skeletonArray = Array.from({ length: 4 });
 
   const handleAddProduct = (product) => {
     dispatch(addToCart(product));
@@ -81,6 +83,7 @@ function Products() {
           Product removed from cart ❌
         </Alert>
       </Snackbar>
+
       <div className="products container-fluid" id="products">
         <h1 className="text-center my-5 fw-bold" data-aos="fade-down">
           Our Products
@@ -117,9 +120,9 @@ function Products() {
             return (
               <div
                 key={product.id}
-                className="col-lg-3 col-md-4 col-sm-6 mb-4"
+                className="col-lg-3 col-md-4 col-sm-6 mb-lg-5 mb-sm-4 mb-4"
                 data-aos="fade-up"
-                data-aos-delay={index * 100}
+                data-aos-delay={index * 50}
               >
                 <div className="card p-3 h-100">
                   <Link to={`/${product.id}`}>
@@ -127,6 +130,7 @@ function Products() {
                       <img
                         src={product.image}
                         alt={product.title}
+                        loading="lazy"
                         style={{ maxHeight: "150px" }}
                       />
                     </div>
@@ -169,14 +173,14 @@ function Products() {
 
                     {cartItem ? (
                       <button
-                        className="btn btn-remove  ms-auto d-flex align-items-center gap-1"
+                        className="btn-remove btn ms-auto d-flex align-items-center gap-1 text-white"
                         onClick={() => handleDeleteFromCart(product)}
                       >
                         <FaTrash /> Remove
                       </button>
                     ) : (
                       <button
-                        className="btn btn-add  ms-auto d-flex align-items-center gap-1"
+                        className="btn-add btn ms-auto d-flex align-items-center gap-1 text-white"
                         onClick={() => handleAddProduct(product)}
                       >
                         <HiShoppingCart /> Add
@@ -187,7 +191,7 @@ function Products() {
                   <button
                     className={`card-heart btn rounded-circle mt-2 ${
                       heart.some((item) => item.id === product.id)
-                        ? "btn-remove"
+                        ? "bg-remove text-white"
                         : "btn-light bg-white"
                     }`}
                     onClick={() =>
@@ -202,6 +206,7 @@ function Products() {
               </div>
             );
           })}
+
           {products.length === 0 &&
             skeletonArray.map((_, index) => (
               <div
@@ -252,8 +257,30 @@ function Products() {
               </div>
             ))}
 
-          {filteredProducts.length == 0 && products.length > 0 && (
-            <h3 className="mt-5 text-center">No results</h3>
+          {filteredProducts.length === 0 && products.length > 0 && (
+            <div className="text-center mb-5  pb-5 empty-state">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png"
+                alt="No results"
+                width="120"
+                className="mb-4 opacity-75"
+              />
+
+              <h3 className="fw-bold mb-2">No products found</h3>
+              <p className="text-muted mb-4">
+                Try changing the search keyword or category
+              </p>
+
+              <button
+                className="btn btn-filter fw-semibold px-5 py-2"
+                onClick={() => {
+                  setSearch("");
+                  setCategory("all");
+                }}
+              >
+                Reset filters
+              </button>
+            </div>
           )}
         </div>
       </div>
