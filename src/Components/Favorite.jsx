@@ -17,7 +17,7 @@ import "aos/dist/aos.css";
 
 import { Snackbar, Alert } from "@mui/material";
 
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { FaRegHeart, FaStar } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi";
@@ -63,6 +63,7 @@ function Favorite() {
           Product removed from cart ❌
         </Alert>
       </Snackbar>
+
       <div className="products">
         <div className="container-fluid mt-5 pb-5 mb-5">
           <h2 className="text-center mb-4 fw-bold" data-aos="fade-down">
@@ -71,18 +72,36 @@ function Favorite() {
 
           {/* Back Button */}
           {heart.length > 0 && (
-            <div className="d-flex gap-2 my-5" data-aos="fade-up">
-              <Link to="/products" className="btn btn-filter">
+            <div
+              className="d-flex flex-wrap gap-3 my-5 mb-5"
+              data-aos="fade-up"
+            >
+              <Link
+                to="/products"
+                className="btn btn-filter d-inline-flex align-items-center gap-2 text-white"
+              >
+                <FaArrowLeft />
                 Back to Products
               </Link>
+
+              <Link
+                to="/cart"
+                className="btn btn-filter d-inline-flex align-items-center gap-2 text-white"
+              >
+                View Cart
+                <FaArrowRight />
+              </Link>
+
               <button
-                className="btn btn-remove"
+                className="btn btn-remove d-inline-flex align-items-center gap-2 text-white"
                 onClick={() => dispatch(clearFavorite())}
               >
+                <FaTrash />
                 Clear All
               </button>
             </div>
           )}
+
           <div className="row">
             {heart.length > 0 ? (
               heart.map((product, index) => {
@@ -162,14 +181,14 @@ function Favorite() {
                           {cart.some((item) => item.id === product.id) ? (
                             <button
                               onClick={() => handleDeleteFromCart(product)}
-                              className="btn btn-remove btn-sm fw-bold ms-auto d-flex align-items-center gap-1"
+                              className="btn btn-remove btn-sm fw-bold ms-auto d-flex align-items-center gap-1 text-white"
                             >
                               <FaTrash /> Remove
                             </button>
                           ) : (
                             <button
                               onClick={() => handleAddProduct(product)}
-                              className="btn btn-add btn-sm fw-bold ms-auto d-flex align-items-center gap-1"
+                              className="btn btn-add btn-sm fw-bold ms-auto d-flex align-items-center gap-1 text-white"
                             >
                               <HiShoppingCart /> Add
                             </button>
@@ -195,7 +214,7 @@ function Favorite() {
                 </p>
                 <Link
                   to="/products"
-                  className="btn btn-filter btn-continue d-inline-flex align-items-center gap-2"
+                  className="btn btn-filter btn-continue d-inline-flex align-items-center gap-2 text-white"
                 >
                   <FaArrowLeft />
                   Browse Products

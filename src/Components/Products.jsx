@@ -136,7 +136,9 @@ function Products() {
                     </div>
                   </Link>
 
-                  <h6 className="card-title text-truncate">{product.title}</h6>
+                  <h6 className="card-title mt-3 text-truncate">
+                    {product.title}
+                  </h6>
 
                   <div className="d-flex align-items-center gap-2 mb-2">
                     <FaStar className="text-warning" />

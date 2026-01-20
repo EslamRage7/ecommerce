@@ -76,12 +76,12 @@ function ProductDetails() {
         </Alert>
       </Snackbar>
 
-      <div className="container my-5 products">
+      <div className="container my-5 products products-detailes">
         {/* Back Button */}
         <Link
           to="/products"
           data-aos="fade-right"
-          className="btn btn-filter d-inline-flex align-items-center gap-2 mb-5"
+          className="btn btn-filter d-inline-flex align-items-center gap-2 mb-5 text-white"
         >
           <FaArrowLeft />
           Back to Products
@@ -171,12 +171,13 @@ function ProductDetails() {
                   <HiShoppingCart /> Add
                 </button>
               )}
+
               <Link
                 to="/cart"
-                className="btn btn-filter d-inline-flex align-items-center gap-2 "
+                className="btn btn-filter d-inline-flex align-items-center gap-2 text-white"
               >
+                View Cart
                 <FaArrowRight />
-                Go to Cart
               </Link>
             </div>
           </div>

@@ -18,6 +18,10 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
@@ -28,7 +32,7 @@ function App() {
   if (loading) return <Loader />;
 
   return (
-    <div className="App min-vh-100 d-flex flex-column">
+    <div className="App">
       <NavbarApp />
 
       <Routes>
